@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
+import WelcomePage from "./Pages/Welcome_Page";
+import StandardPage from "./Pages/Standard_Page";
+import ADHDPage from "./Pages/ADHD_Page";
+import ADHDWelcomePage from "./Pages/ADHD_Intro_Page";
+import EndPage from "./Pages/End_Page";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" index="true" element={<WelcomePage />} />
+      <Route path="standard" element={<StandardPage />} />
+      <Route path="adhd" element={<ADHDPage />} />
+      <Route path="adhd_intro" element={<ADHDWelcomePage />} />
+      <Route path="end" element={<EndPage />} />
+      <Route path="*" element={<WelcomePage />} />
+    </Routes>
   );
 }
 
