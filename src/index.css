@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: aqua; */
 }
 
 code {
@@ -16,4 +17,11 @@ code {
   font-family: "OpenDyslexic";
   src: local("OpenDyslexic"),
     url(./fonts/OpenDyslexic/OpenDyslexic-Regular.otf) format("truetype");
+}
+
+.bg-regular {
+  background-color: white;
+}
+.bg-adhd {
+  background-color: #121212;
 }

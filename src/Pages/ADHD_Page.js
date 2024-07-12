@@ -33,6 +33,7 @@ export default function ADHDPage() {
   const [mouseDist, setMouseDist] = useState(0);
   const [prevMouseLoc, setPrevMouseLoc] = useState(null);
   useEffect(() => {
+    document.body.classList.add('bg-adhd');
     const handleWindowMouseMove = (event) => {
       const currentX = event.clientX;
       const currentY = event.clientY;
@@ -66,7 +67,7 @@ export default function ADHDPage() {
       question: index + 1,
       correct: questions[index].correct_index === highlighted ? true : false,
       time_taken: elapsed,
-      total_mouse_distance_moved: mouseDist,
+      total_mouse_distance_moved: Math.round(mouseDist),
     });
     console.log(metrics);
 
@@ -82,71 +83,71 @@ export default function ADHDPage() {
   }
 
   return (
-    <div
-      style={{
-        fontFamily: "OpenDyslexic, sans-serif",
-        color: "white",
-
-        textAlign: "center",
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
+    <div className="adhd-page">
       <div
         style={{
-          background: "rgb(235 246 255)",
-          color: "black",
-          padding: 20,
-          borderRadius: "10px",
+          fontFamily: "OpenDyslexic, sans-serif",
+          color: "white",
+          textAlign: "center",
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        <h2>{questions[index].question}</h2>
-        <h1>{questions[index].problem}</h1>
-        {questions[index].answers.map((answer, answerIndex) => (
-          <button
-            key={answerIndex}
-            style={{
-              cursor: "pointer",
-              border: "none",
-              fontFamily: "Arial, sans-serif",
-              color: "white",
-              fontSize: 20,
-              margin: 5,
-              background:
-                answerIndex === highlighted ? "rgb(70, 121, 72)" : "#4CAF50",
-              padding: 10,
-              borderRadius: "10px",
-            }}
-            onClick={() => {
-              setHighlighted(answerIndex);
-            }}
-          >
-            {answer}
-          </button>
-        ))}
-      </div>
-      {highlighted === -1 ? (
-        <br></br>
-      ) : (
-        <button
+        <div
           style={{
-            cursor: "pointer",
-            border: "none",
-            fontFamily: "Arial, sans-serif",
-            color: "white",
-            fontSize: 20,
-            margin: 10,
-            background: "#4CAF50",
+            background: "#282828",
+
             padding: 20,
             borderRadius: "10px",
           }}
-          onClick={handleClick}
         >
-          Next
-        </button>
-      )}
+          <h2 style={{ color: "#cccace" }}>{questions[index].question}</h2>
+          <h1 style={{ color: "#bcafff" }}>{questions[index].problem}</h1>
+          {questions[index].answers.map((answer, answerIndex) => (
+            <button
+              key={answerIndex}
+              style={{
+                cursor: "pointer",
+                border: "none",
+                fontFamily: "OpenDyslexic, sans-serif",
+                color: "white",
+                fontSize: 20,
+                margin: 5,
+                background: answerIndex === highlighted ? "#4CAF50" : "#484650",
+                padding: 10,
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                setHighlighted(answerIndex);
+              }}
+            >
+              {answer}
+            </button>
+          ))}
+        </div>
+        {highlighted === -1 ? (
+          <br></br>
+        ) : (
+          <button
+            style={{
+              cursor: "pointer",
+              border: "none",
+              fontFamily: "OpenDyslexic, sans-serif",
+              color: "white",
+              fontSize: 20,
+              margin: 10,
+              background: "#4CAF50",
+              padding: 20,
+              borderRadius: "10px",
+            }}
+            onClick={handleClick}
+          >
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
 }

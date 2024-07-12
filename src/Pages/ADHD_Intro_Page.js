@@ -1,8 +1,12 @@
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
 export default function ADHDWelcomePage() {
   const location = useLocation();
   const navigate = useNavigate();
+  useEffect(() => {
+    document.body.classList.add("bg-adhd");
+    document.body.classList.remove("bg-regular");
+  });
   return (
     <div
       style={{
@@ -19,23 +23,27 @@ export default function ADHDWelcomePage() {
     >
       <div
         style={{
-          background: "rgb(235 246 255)",
+          background: "#282828",
           color: "black",
           padding: 20,
           borderRadius: "10px",
         }}
       >
-        <h1>You've completed the standard styling questions!</h1>
-        <h2>
+        <h1 style={{ color: "#bcafff" }}>
+          You've completed the standard styling questions!
+        </h1>
+        <h2 style={{ color: "#cccace" }}>
           You'll be asked 3 more questions similar to what you've just completed
         </h2>
-        <h2>The styling of the page will shift to be more ADHD friendly</h2>
+        <h3 style={{ color: "#cccace" }}>
+          The styling of the page will shift to be more ADHD friendly
+        </h3>
       </div>
       <button
         style={{
           cursor: "pointer",
           border: "none",
-          fontFamily: "Arial, sans-serif",
+          fontFamily: "OpenDyslexic, sans-serif",
           color: "white",
           fontSize: 20,
           margin: 10,

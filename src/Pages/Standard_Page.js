@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import timer from "../Images/timer.jpg";
 const questions = [
   {
     question: "Complete the following equation",
@@ -26,12 +27,24 @@ export default function StandardPage() {
   const [index, setIndex] = useState(0);
   const [highlighted, setHighlighted] = useState(-1);
   const [timeStart, setTimeStart] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const [metrics] = useState([]);
 
   const [mouseDist, setMouseDist] = useState(0);
   const [prevMouseLoc, setPrevMouseLoc] = useState(null);
+
   useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 10);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.remove("bg-adhd");
+    document.body.classList.add("bg-regular");
     const handleWindowMouseMove = (event) => {
       const currentX = event.clientX;
       const currentY = event.clientY;
@@ -65,7 +78,7 @@ export default function StandardPage() {
       question: index + 1,
       correct: questions[index].correct_index === highlighted ? true : false,
       time_taken: elapsed,
-      total_mouse_distance_moved: mouseDist,
+      total_mouse_distance_moved: Math.round(mouseDist),
     });
     console.log(metrics);
 
@@ -81,68 +94,99 @@ export default function StandardPage() {
   }
 
   return (
-    <div
-      style={{
-        fontFamily: "Arial, sans-serif",
-        color: "white",
-
-        textAlign: "center",
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
+    <div>
       <div
         style={{
-          background: "rgb(235 246 255)",
-          color: "black",
-          padding: 20,
-          borderRadius: "10px",
+          background: "lightblue",
+          fontFamily: "Arial, sans-serif",
+          color: "darkblue",
+          width: "100%",
+          padding: 10,
+          textAlign: "center",
+          position: "absolute",
         }}
       >
-        <h2>{questions[index].question}</h2>
-        <h1>{questions[index].problem}</h1>
-        {questions[index].answers.map((answer, answerIndex) => (
-          <button
-            key={answerIndex}
-            style={{
-              cursor: "pointer",
-              border: "none",
-              fontFamily: "Arial, sans-serif",
-              color: "white",
-              fontSize: 20,
-              margin: 5,
-              background:
-                answerIndex === highlighted ? "rgb(70, 121, 72)" : "#4CAF50",
-              padding: 10,
-              borderRadius: "10px",
-            }}
-            onClick={() => {
-              setHighlighted(answerIndex);
-            }}
-          >
-            {answer}
-          </button>
-        ))}
+        <h1>Standard Design Assessment</h1>
       </div>
-      <button
+      <div
         style={{
-          cursor: highlighted === -1 ? "not-allowed" : "pointer",
-          border: "none",
           fontFamily: "Arial, sans-serif",
           color: "white",
-          fontSize: 20,
-          margin: 10,
-          background: highlighted === -1 ? "#d3d3d3" : "#4CAF50",
-          padding: 20,
-          borderRadius: "10px",
+
+          textAlign: "center",
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
-        disabled={highlighted === -1}
-        onClick={highlighted === -1 ? null : handleClick}
       >
-        Next
-      </button>
+        <div
+          style={{
+            background: "lightblue",
+            width: 60,
+            padding: 7,
+            borderRadius: "10px",
+            marginBottom: 10,
+            // left: "50%",
+            // top: "50%",
+            // textAlign: "center",
+            color: "black",
+          }}
+        >
+          <img style={{ width: 15 }} src={timer} alt="Timer: " />
+          <b> {Math.round((currentTime - timeStart) / 1000)}s</b>
+        </div>
+        <div
+          style={{
+            background: "rgb(235 246 255)",
+            color: "black",
+            padding: 20,
+            borderRadius: "10px",
+          }}
+        >
+          <h2>{questions[index].question}</h2>
+          <h1>{questions[index].problem}</h1>
+          {questions[index].answers.map((answer, answerIndex) => (
+            <button
+              key={answerIndex}
+              style={{
+                cursor: "pointer",
+                border: "none",
+                fontFamily: "Arial, sans-serif",
+                color: "white",
+                fontSize: 20,
+                margin: 5,
+                background:
+                  answerIndex === highlighted ? "rgb(70, 121, 72)" : "#4CAF50",
+                padding: 10,
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                setHighlighted(answerIndex);
+              }}
+            >
+              {answer}
+            </button>
+          ))}
+        </div>
+        <button
+          style={{
+            cursor: highlighted === -1 ? "not-allowed" : "pointer",
+            border: "none",
+            fontFamily: "Arial, sans-serif",
+            color: "white",
+            fontSize: 20,
+            margin: 10,
+            background: highlighted === -1 ? "#d3d3d3" : "#4CAF50",
+            padding: 20,
+            borderRadius: "10px",
+          }}
+          disabled={highlighted === -1}
+          onClick={highlighted === -1 ? null : handleClick}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

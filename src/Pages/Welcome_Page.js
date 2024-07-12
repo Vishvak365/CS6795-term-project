@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function WelcomePage() {
+  useEffect(() => {
+    document.body.classList.remove("bg-adhd");
+    document.body.classList.add("bg-regular");
+  });
   const navigate = useNavigate();
   return (
     <div
