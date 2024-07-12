@@ -3,22 +3,22 @@ import { useNavigate, useLocation } from "react-router-dom";
 const questions = [
   {
     question: "Complete the following equation",
-    problem: "(2+2)*3+2=",
-    answers: ["20", "10", "14", "12"],
-    correct_index: 2,
+    problem: "(2+2)*2+3=",
+    answers: ["20", "11", "14", "12"],
+    correct_index: 1,
   },
   {
     question: "Answer the following teaser",
     problem:
-      "If all Swans are Birds and some Birds can Fly, can we conclude that some Swans can definitely Fly?",
+      "If all doctors are human and some humans are kind, can we conclude that all doctors are definitely kind?",
     answers: ["Yes", "No"],
     correct_index: 1,
   },
   {
     question: "Calculate the perimeter of the rectangle",
-    problem: "Length is Five and Width is Three",
-    answers: ["Eight", "Ten", "Fifteen", "Sixteen"],
-    correct_index: 3,
+    problem: "Length is Two and Width is Four",
+    answers: ["Twelve", "Ten", "Fifteen", "Sixteen"],
+    correct_index: 0,
   },
 ];
 export default function ADHDPage() {
@@ -62,7 +62,7 @@ export default function ADHDPage() {
   function handleClick() {
     const elapsed = (new Date() - timeStart) / 1000;
     metrics.push({
-      type: "standard",
+      type: "adhd",
       question: index + 1,
       correct: questions[index].correct_index === highlighted ? true : false,
       time_taken: elapsed,
@@ -84,7 +84,7 @@ export default function ADHDPage() {
   return (
     <div
       style={{
-        fontFamily: "Arial, sans-serif",
+        fontFamily: "OpenDyslexic, sans-serif",
         color: "white",
 
         textAlign: "center",

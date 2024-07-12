@@ -61,7 +61,7 @@ export default function StandardPage() {
   function handleClick() {
     const elapsed = (new Date() - timeStart) / 1000;
     metrics.push({
-      type: "adhd",
+      type: "standard",
       question: index + 1,
       correct: questions[index].correct_index === highlighted ? true : false,
       time_taken: elapsed,

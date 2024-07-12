@@ -6,7 +6,8 @@ export default function ADHDWelcomePage() {
   return (
     <div
       style={{
-        fontFamily: "Arial, sans-serif",
+        // fontFamily: "Arial, sans-serif",
+        fontFamily: "OpenDyslexic, sans-serif",
         color: "white",
 
         textAlign: "center",
