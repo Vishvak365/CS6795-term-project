@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 const questions = [
   {
     question: "Complete the following equation",
-    problem: "(2+2)*2+3=",
-    answers: ["20", "11", "14", "12"],
+    problem: "(2+3)*2+2=",
+    answers: ["14", "12", "16", "11"],
     correct_index: 1,
   },
   {
@@ -33,7 +33,7 @@ export default function ADHDPage() {
   const [mouseDist, setMouseDist] = useState(0);
   const [prevMouseLoc, setPrevMouseLoc] = useState(null);
   useEffect(() => {
-    document.body.classList.add('bg-adhd');
+    document.body.classList.add("bg-adhd");
     const handleWindowMouseMove = (event) => {
       const currentX = event.clientX;
       const currentY = event.clientY;

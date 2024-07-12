@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Answer the following teaser",
     problem:
-      "If all Swans are Birds and some Birds can Fly, can we conclude that some Swans can definitely Fly?",
+      "If all squares are rectangles and some rectangles are blue, can we conclude that some squares are definitely blue?",
     answers: ["Yes", "No"],
     correct_index: 1,
   },
